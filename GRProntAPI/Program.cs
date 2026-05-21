@@ -69,6 +69,18 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// Configurar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173") // origem do Vite
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 
 var app = builder.Build();
 
@@ -99,6 +111,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+// CORS deve vir antes de Authentication/Authorization
+app.UseCors("AllowFrontend");
 
 app.UseAuthentication();
 app.UseAuthorization();

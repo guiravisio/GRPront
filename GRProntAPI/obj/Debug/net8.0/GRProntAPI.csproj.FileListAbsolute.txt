@@ -140,3 +140,4 @@ C:\Users\Gui\Documents\dev\GRPront\GRProntAPI\obj\Debug\net8.0\GRProntAPI.pdb
 C:\Users\Gui\Documents\dev\GRPront\GRProntAPI\obj\Debug\net8.0\GRProntAPI.genruntimeconfig.cache
 C:\Users\Gui\Documents\dev\GRPront\GRProntAPI\obj\Debug\net8.0\ref\GRProntAPI.dll
 C:\Users\Gui\Documents\dev\GRPront\GRProntAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Gui\Documents\dev\GRPront\GRProntAPI\obj\Debug\net8.0\GRProntAPI.sourcelink.json
