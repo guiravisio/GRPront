@@ -9,6 +9,9 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ logout }) => {
   const navigate = useNavigate();
+  const role = localStorage.getItem("role") || "";
+
+  //useEffect(() => {console.log("Role atual no localStorage:", role);}, [role]);
 
   const handleLogout = () => {
     logout();              // chama o hook para limpar o token
@@ -51,8 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ logout }) => {
                 Cadastro
               </Link>
               <ul className="dropdown-menu" aria-labelledby="cadastroDropdown">
-                {/* Exemplo: só mostra Usuários se for Admin */}
-                {localStorage.getItem("role") === "Admin" && (
+                {role.toLowerCase() === "admin" && (
                   <li><Link className="dropdown-item" to="/users">Usuários</Link></li>
                 )}
                 <li><Link className="dropdown-item" to="/insurancePlans">Convênios</Link></li>
@@ -62,13 +64,12 @@ const Navbar: React.FC<NavbarProps> = ({ logout }) => {
             </li>
 
             <li className="nav-item"><Link className="nav-link" to="/patients">Pacientes</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/reports">Relatórios</Link></li>
-
-            {/* Sair */}
+            {(role === "Admin" || role === "Manager") && (
+              <li className="nav-item"><Link className="nav-link" to="/reports">Relatórios</Link></li>
+            )}
+            
             <li className="nav-item">
-              <button className="nav-link btn btn-link" onClick={handleLogout}>
-                Sair
-              </button>
+              <button className="nav-link btn btn-link" onClick={handleLogout}>Sair</button>
             </li>
           </ul>
         </div>

@@ -10,6 +10,11 @@ interface AuthContextType {
   logout: () => void;
 }
 
+interface DecodedToken {
+  exp?: number;
+  [key: string]: any;
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -42,9 +47,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const response = await api.post("/Auth/login", { username, password });
 
+      //console.log("Resposta da API no login:", response.data);
+
       if (response.data?.token && !isTokenExpired(response.data.token)) {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("role", response.data.role);
+        // Decodifica o token para extrair a role
+        const decoded: DecodedToken = jwtDecode(response.data.token);
+
+        const roleClaim = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+        if (roleClaim) {
+          localStorage.setItem("role", roleClaim); //console.log("Role salva no localStorage:", roleClaim);
+        }
         setIsAuthenticated(true);
         return true;
       }

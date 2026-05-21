@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./hooks/AuthContext";
 import LoadingOverlay from "./components/LoadingOverlay";
+import PrivateRoute from "./hooks/PrivateRoute";
 
 // Páginas
 import Login from "./pages/Login.tsx";
@@ -30,28 +31,18 @@ function AppContent() {
       {isAuthenticated && <Navbar logout={logout} />}
 
       <Routes>
-        {/* Login sempre acessível */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/login"            element={<Login />} />
+        <Route path="/"                 element={<PrivateRoute element={<Home />} />} />
+        <Route path="/home"             element={<PrivateRoute element={<Home />} />} />
+        <Route path="/users"            element={<PrivateRoute element={<Users />} allowedRoles={["Admin"]} />}/>
+        <Route path="/users/newUser"    element={<PrivateRoute element={<NewUser />} allowedRoles={["Admin"]} />}/>
+        <Route path="/users/user/:id"   element={<PrivateRoute element={<User />} allowedRoles={["Admin"]} />}/>
+        <Route path="/reports"          element={<PrivateRoute element={<Report />} allowedRoles={["Admin", "Manager"]} />}/>
 
-        {/* Rotas privadas */}
-        <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
-
-        {/* Users */}
-        <Route path="/users" element={isAuthenticated ? <Users /> : <Navigate to="/login" />} />
-        <Route path="/users/newUser" element={isAuthenticated ? <NewUser /> : <Navigate to="/login" />} />
-        <Route path="/users/user/:id" element={isAuthenticated ? <User /> : <Navigate to="/login" />} />
-
-        {/* Patients */}
-        <Route path="/patients" element={isAuthenticated ? <Patients /> : <Navigate to="/login" />} />
-
-        {/* Outros cadastros */}
-        <Route path="/insurancePlans" element={isAuthenticated ? <InsurancePlan /> : <Navigate to="/login" />} />
-        <Route path="/medicine" element={isAuthenticated ? <Medicine /> : <Navigate to="/login" />} />
-        <Route path="/dosageUnit" element={isAuthenticated ? <DosageUnit /> : <Navigate to="/login" />} />
-
-        {/* Relatórios */}
-        <Route path="/reports" element={isAuthenticated ? <Report /> : <Navigate to="/login" />} />
+        <Route path="/patients"         element={<PrivateRoute element={<Patients />} />} />
+        <Route path="/insurancePlans"   element={<PrivateRoute element={<InsurancePlan />} />} />
+        <Route path="/medicine"         element={<PrivateRoute element={<Medicine />} />} />
+        <Route path="/dosageUnit"       element={<PrivateRoute element={<DosageUnit />} />} />
       </Routes>
     </Router>
   );
