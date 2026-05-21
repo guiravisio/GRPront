@@ -28,7 +28,13 @@ namespace GRProntAPI.Controllers
         public IActionResult Login([FromBody] LoginDto dto)
         {
             var user = _context.Users.SingleOrDefault(u => u.UserName == dto.Username);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+            if (user == null) return Unauthorized("Usuário não encontrado.");
+
+
+            if (user.MustChangePassword)
+                return Unauthorized(new { message = "Senha precisa ser redefinida.", userId = user.Id });
+
+            if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
                 return Unauthorized("Senha inválida.");
 
             var token = GenerateJwtToken(user);
@@ -61,8 +67,9 @@ namespace GRProntAPI.Controllers
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-            new Claim(ClaimTypes.Name, user.UserName),
-            new Claim(ClaimTypes.Role, user.Role)
+            new Claim(ClaimTypes.NameIdentifier, user.UserName),
+            new Claim(ClaimTypes.Role, user.Role),
+            new Claim(ClaimTypes.Name, user.FullName)
         };
             var token = new JwtSecurityToken(
                 claims: claims,

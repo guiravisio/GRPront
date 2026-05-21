@@ -16,5 +16,7 @@ namespace GRProntAPI.Models
 
         // Se quiser trabalhar com senha, use hash
         public string PasswordHash { get; set; } = string.Empty;
+
+        public bool MustChangePassword { get; set; } = false;
     }
 }

@@ -81,6 +81,33 @@ namespace GRProntAPI.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/reset-password")]
+        public async Task<IActionResult> ResetPassword(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) return NotFound();
+
+            // Limpa o hash e marca que precisa trocar senha
+            user.PasswordHash = string.Empty;
+            user.MustChangePassword = true;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPut("{id}/set-password")]
+        public async Task<IActionResult> SetPassword(int id, [FromBody] SetPasswordDto dto)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) return NotFound();
+
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            user.MustChangePassword = false;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
     }
 
 }
