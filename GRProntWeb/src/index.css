@@ -1,0 +1,23 @@
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+  --color1: #224562;
+  --color2: #395b7a;
+  --color3: #517291;
+  --color4: #6888a9;
+  --color5: #7f9ec0;
+}
+
+body {
+  background-color: var(--color1);
+  color: white;
+}
+
+.btn-custom {
+  background-color: var(--color2);
+  color: white;
+}
+
+.btn-custom:hover {
+  background-color: var(--color3);
+}

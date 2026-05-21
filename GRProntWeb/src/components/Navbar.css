@@ -1,0 +1,21 @@
+.navbar {
+    background-color: var(--color1); 
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: var(--color2);
+  }
+  
+  .nav-link {
+    color: #fff !important;
+  }
+  
+  .nav-link:hover {
+    color: lightgray !important;
+  }
+  
+  .dropdown-menu {
+    background-color: #fff;
+  }
+  
