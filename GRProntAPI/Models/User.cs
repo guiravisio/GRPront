@@ -6,13 +6,15 @@ namespace GRProntAPI.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        public string Username { get; set; }
+        public string FullName { get; set; } = string.Empty;
 
-        [Required]
-        public string PasswordHash { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
-        [Required]
-        public string Role { get; set; } // Admin, Doctor, Psychologist
+        public string Email { get; set; } = string.Empty;
+
+        public string Role { get; set; } = "User";
+
+        // Se quiser trabalhar com senha, use hash
+        public string PasswordHash { get; set; } = string.Empty;
     }
 }

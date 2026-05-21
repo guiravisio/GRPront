@@ -81,6 +81,8 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 
 var app = builder.Build();
 
@@ -93,7 +95,7 @@ using (var scope = app.Services.CreateScope())
     {
         var adminUser = new User
         {
-            Username = "admin",
+            UserName = "admin",
             PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
             Role = "Admin"
         };

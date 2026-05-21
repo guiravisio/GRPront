@@ -27,7 +27,7 @@ namespace GRProntAPI.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto dto)
         {
-            var user = _context.Users.SingleOrDefault(u => u.Username == dto.Username);
+            var user = _context.Users.SingleOrDefault(u => u.UserName == dto.Username);
             if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
                 return Unauthorized("Senha inválida.");
 
@@ -39,12 +39,12 @@ namespace GRProntAPI.Controllers
         [Authorize(Roles = "Admin")] // apenas Admin pode registrar
         public IActionResult Register([FromBody] RegisterDto dto)
         {
-            if (_context.Users.Any(u => u.Username == dto.Username))
+            if (_context.Users.Any(u => u.UserName == dto.Username))
                 return BadRequest("Usuário já existe.");
 
             var user = new User
             {
-                Username = dto.Username,
+                UserName = dto.Username,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 Role = dto.Role
             };
@@ -61,7 +61,7 @@ namespace GRProntAPI.Controllers
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Name, user.UserName),
             new Claim(ClaimTypes.Role, user.Role)
         };
             var token = new JwtSecurityToken(
