@@ -16,15 +16,18 @@ function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     showLoading("Entrando no sistema...");
-    const success = await login(username, password);
+    const result = await login(username, password);
     hideLoading();
-
-    if (success) {
-      navigate("/home"); // redireciona para Home
+  
+    if (result.success) {
+      navigate("/home");
+    } else if (result.mustChangePassword) {
+      navigate(`/reset-password/${result.userId}`);
     } else {
       alert("Usuário ou senha inválidos");
     }
   };
+  
 
   return (
     <div className="login-page d-flex justify-content-center align-items-center">

@@ -60,7 +60,7 @@ const Users: React.FC = () => {
         </div>
         <div className="col-auto">
           <Link
-            to="/users/newUser"
+            to="/users/new"
             className="btn btn-success"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
@@ -93,7 +93,7 @@ const Users: React.FC = () => {
                 <td>{user.role}</td>
                 <td className="text-center">
                   <Link
-                    to={`/users/user/${user.id}`}
+                    to={`/users/${user.id}`}
                     className="btn btn-sm btn-outline-primary me-2"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"

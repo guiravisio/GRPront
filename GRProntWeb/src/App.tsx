@@ -5,9 +5,9 @@ import PrivateRoute from "./hooks/PrivateRoute";
 
 // Páginas
 import Login from "./pages/Login.tsx";
+import ResetPassword from "./pages/ResetPassword";
 import Home from "./pages/Home.tsx";
 import Users from "./pages/Users.tsx";
-import NewUser from "./pages/NewUser.tsx";
 import User from "./pages/User.tsx";
 import Patients from "./pages/Patients.tsx";
 import InsurancePlan from "./pages/InsurancePlan.tsx";
@@ -31,18 +31,19 @@ function AppContent() {
       {isAuthenticated && <Navbar logout={logout} />}
 
       <Routes>
-        <Route path="/login"            element={<Login />} />
-        <Route path="/"                 element={<PrivateRoute element={<Home />} />} />
-        <Route path="/home"             element={<PrivateRoute element={<Home />} />} />
-        <Route path="/users"            element={<PrivateRoute element={<Users />} allowedRoles={["Admin"]} />}/>
-        <Route path="/users/newUser"    element={<PrivateRoute element={<NewUser />} allowedRoles={["Admin"]} />}/>
-        <Route path="/users/user/:id"   element={<PrivateRoute element={<User />} allowedRoles={["Admin"]} />}/>
-        <Route path="/reports"          element={<PrivateRoute element={<Report />} allowedRoles={["Admin", "Manager"]} />}/>
+        <Route path="/login"              element={<Login />} />
+        <Route path="/reset-password/:id" element={<ResetPassword />} />
+        <Route path="/"                   element={<PrivateRoute element={<Home />} />} />
+        <Route path="/home"               element={<PrivateRoute element={<Home />} />} />
+        <Route path="/users"              element={<PrivateRoute element={<Users />} allowedRoles={["Admin"]} />}/>
+        <Route path="/users/new"          element={<PrivateRoute element={<User />} allowedRoles={["Admin"]} />}/>
+        <Route path="/users/:id"     element={<PrivateRoute element={<User />} allowedRoles={["Admin"]} />}/>
+        <Route path="/reports"            element={<PrivateRoute element={<Report />} allowedRoles={["Admin", "Manager"]} />}/>
 
-        <Route path="/patients"         element={<PrivateRoute element={<Patients />} />} />
-        <Route path="/insurancePlans"   element={<PrivateRoute element={<InsurancePlan />} />} />
-        <Route path="/medicine"         element={<PrivateRoute element={<Medicine />} />} />
-        <Route path="/dosageUnit"       element={<PrivateRoute element={<DosageUnit />} />} />
+        <Route path="/patients"           element={<PrivateRoute element={<Patients />} />} />
+        <Route path="/insurancePlans"     element={<PrivateRoute element={<InsurancePlan />} />} />
+        <Route path="/medicine"           element={<PrivateRoute element={<Medicine />} />} />
+        <Route path="/dosageUnit"         element={<PrivateRoute element={<DosageUnit />} />} />
       </Routes>
     </Router>
   );
