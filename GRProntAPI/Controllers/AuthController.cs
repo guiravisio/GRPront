@@ -1,6 +1,7 @@
 ﻿using BCrypt.Net;
 using GRProntAPI.Data;
 using GRProntAPI.Models;
+using GRProntAPI.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

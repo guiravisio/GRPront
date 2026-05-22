@@ -1,4 +1,4 @@
-﻿namespace GRProntAPI.Models
+﻿namespace GRProntAPI.DTOs
 {
     public class RegisterDto
     {
