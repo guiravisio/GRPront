@@ -67,9 +67,9 @@ const Navbar: React.FC<NavbarProps> = ({ logout }) => {
             {(role === "Admin" || role === "Manager") && (
               <li className="nav-item"><Link className="nav-link" to="/reports">Relatórios</Link></li>
             )}
-            
-            <li className="nav-item">
-              <button className="nav-link btn btn-link" onClick={handleLogout}>Sair</button>
+
+            <li className="nav-item" onClick={handleLogout}>
+              <button className="nav-link btn btn-link" >Sair</button>
             </li>
           </ul>
         </div>

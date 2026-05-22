@@ -8,16 +8,9 @@ namespace GRProntAPI.Profiles
     {
         public PatientProfile()
         {
-            // Create → Model
             CreateMap<PatientCreateDto, Patient>();
-
-            // Update → Model
             CreateMap<PatientUpdateDto, Patient>();
-
-            // Model → List DTO
             CreateMap<Patient, PatientListDto>();
-
-            // Model → Detail DTO
             CreateMap<Patient, PatientDetailDto>();
         }
     }

@@ -1,0 +1,21 @@
+/*.btn {
+    background-color: var(--color3) !important; 
+    color: #fff !important;             
+    border: none; 
+  }
+  
+  .btn:hover {
+    background-color: var(--color1) !important;
+    color: #e9ecef !important;
+  }
+
+  .btn-delete {
+    background-color: #a50202 !important; 
+    color: #fff !important;             
+    border: none; /* remove borda padrão 
+  }
+  
+  .btn-delete:hover {
+    background-color: #580303 !important;
+    color: #e9ecef !important;
+  }*/

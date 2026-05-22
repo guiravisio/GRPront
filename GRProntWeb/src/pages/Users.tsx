@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../services/api";
+import "./Users.css";
 
 interface User {
   id: number;
@@ -47,7 +48,6 @@ const Users: React.FC = () => {
     <div className="container mt-4">
       <h2 className="mb-4">Usuários</h2>
 
-      {/* Pesquisa + botão de cadastro */}
       <div className="row mb-3 align-items-center">
         <div className="col">
           <input
@@ -61,7 +61,7 @@ const Users: React.FC = () => {
         <div className="col-auto">
           <Link
             to="/users/new"
-            className="btn btn-success"
+            className="btn btn-create"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Cadastrar novo usuário"
@@ -71,11 +71,11 @@ const Users: React.FC = () => {
         </div>
       </div>
 
-      {/* Tabela elegante */}
       <div className="table-responsive">
         <table className="table table-hover align-middle">
           <thead className="table-light">
             <tr>
+              <th>Id</th>
               <th>Nome</th>
               <th className="d-none d-md-table-cell">Nome de Usuário</th>
               <th>Perfil</th>
@@ -85,6 +85,7 @@ const Users: React.FC = () => {
           <tbody>
             {paginatedUsers.map((user) => (
               <tr key={user.id}>
+                <td>{user.id}</td>
                 <td>
                   <div className="fw-semibold">{user.fullName}</div>
                   <div className="text-muted small">{user.email}</div>
@@ -94,7 +95,7 @@ const Users: React.FC = () => {
                 <td className="text-center">
                   <Link
                     to={`/users/${user.id}`}
-                    className="btn btn-sm btn-outline-primary me-2"
+                    className="btn btn-sm btn-edit me-2"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Editar usuário"
@@ -102,7 +103,7 @@ const Users: React.FC = () => {
                     <i className="bi bi-pencil"></i>
                   </Link>
                   <button
-                    className="btn btn-sm btn-outline-danger"
+                    className="btn btn-sm btn-delete me-2"
                     onClick={() => console.log("Excluir", user.id)}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
