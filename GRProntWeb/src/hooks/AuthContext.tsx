@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import type { ReactNode } from "react"; // importa como type-only
+import type { ReactNode } from "react"; 
 import { jwtDecode } from "jwt-decode";
-import { api } from "../services/api"; // ajuste o caminho
+import { api } from "../services/api"; 
 
 interface AuthContextType {
   isAuthenticated: boolean;

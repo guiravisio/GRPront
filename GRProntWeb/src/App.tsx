@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./hooks/AuthContext";
+import { ToastProvider } from "./context/ToastContext";
 import LoadingOverlay from "./components/LoadingOverlay";
 import PrivateRoute from "./hooks/PrivateRoute";
 
@@ -10,6 +11,7 @@ import Home from "./pages/Home.tsx";
 import Users from "./pages/Users.tsx";
 import User from "./pages/User.tsx";
 import Patients from "./pages/Patients.tsx";
+import Patient from "./pages/Patient.tsx";
 import InsurancePlan from "./pages/InsurancePlan.tsx";
 import Medicine from "./pages/Medicine.tsx";
 import DosageUnit from "./pages/DosageUnit.tsx";
@@ -37,10 +39,12 @@ function AppContent() {
         <Route path="/home"               element={<PrivateRoute element={<Home />} />} />
         <Route path="/users"              element={<PrivateRoute element={<Users />} allowedRoles={["Admin"]} />}/>
         <Route path="/users/new"          element={<PrivateRoute element={<User />} allowedRoles={["Admin"]} />}/>
-        <Route path="/users/:id"     element={<PrivateRoute element={<User />} allowedRoles={["Admin"]} />}/>
+        <Route path="/users/:id"          element={<PrivateRoute element={<User />} allowedRoles={["Admin"]} />}/>
         <Route path="/reports"            element={<PrivateRoute element={<Report />} allowedRoles={["Admin", "Manager"]} />}/>
 
         <Route path="/patients"           element={<PrivateRoute element={<Patients />} />} />
+        <Route path="/patients/new"       element={<PrivateRoute element={<Patient />} />} />
+        <Route path="/patients/:id"       element={<PrivateRoute element={<Patient />} />} />
         <Route path="/insurancePlans"     element={<PrivateRoute element={<InsurancePlan />} />} />
         <Route path="/medicine"           element={<PrivateRoute element={<Medicine />} />} />
         <Route path="/dosageUnit"         element={<PrivateRoute element={<DosageUnit />} />} />
@@ -52,7 +56,9 @@ function AppContent() {
 export default function App() {
   return (
     <AuthProvider>
-      <AppContent />
+      <ToastProvider>
+        <AppContent />
+      </ToastProvider>
     </AuthProvider>
   );
 }

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/AuthContext"; // hook de autenticação
 import { useLoading } from "../hooks/useLoading"; // hook de loading
 import "./Login.css"; // CSS específico para estilizar a tela
+import { useToast } from "../context/ToastContext";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { showToast } = useToast();
 
   const { showLoading, hideLoading, LoadingComponent } = useLoading();
   const { login } = useAuth();
@@ -24,7 +26,8 @@ function Login() {
     } else if (result.mustChangePassword) {
       navigate(`/reset-password/${result.userId}`);
     } else {
-      alert("Usuário ou senha inválidos");
+      console.log("toast disparado") 
+      showToast("Usuário ou senha incorretos.", "error");
     }
   };
   
