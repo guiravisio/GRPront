@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./hooks/AuthContext";
-import { ToastProvider } from "./context/ToastContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LoadingOverlay from "./components/LoadingOverlay";
 import PrivateRoute from "./hooks/PrivateRoute";
 
@@ -29,7 +30,18 @@ function AppContent() {
 
   return (
     <Router>
-      {/* Navbar só aparece se estiver autenticado */}
+      <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       {isAuthenticated && <Navbar logout={logout} />}
 
       <Routes>
@@ -56,9 +68,7 @@ function AppContent() {
 export default function App() {
   return (
     <AuthProvider>
-      <ToastProvider>
         <AppContent />
-      </ToastProvider>
     </AuthProvider>
   );
 }

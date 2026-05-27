@@ -33,6 +33,9 @@ namespace GRProntAPI.Models
         [MaxLength(250)]
         public string? Address { get; set; }
 
+        [MaxLength(10)]
+        public string? AddressNumber { get; set; }
+
         [MaxLength(100)]
         public string? City { get; set; }
 
@@ -46,7 +49,7 @@ namespace GRProntAPI.Models
         public string? GuardianName { get; set; }
 
         [MaxLength(20)]
-        public string? GuardianCPF { get; set; }
+        public string? GuardianPhone { get; set; }
 
         public string? Notes { get; set; }
 

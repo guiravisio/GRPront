@@ -570,6 +570,11 @@
             "type": "string",
             "nullable": true
           },
+          "addressNumber": {
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
           "city": {
             "maxLength": 100,
             "type": "string",
@@ -590,7 +595,7 @@
             "type": "string",
             "nullable": true
           },
-          "guardianCPF": {
+          "guardianPhone": {
             "maxLength": 20,
             "type": "string",
             "nullable": true

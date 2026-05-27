@@ -9,8 +9,7 @@
 }
 
 body {
-  background-color: var(--color1);
-  color: white;
+  color: black;
 }
 
 .btn-custom {
@@ -21,3 +20,116 @@ body {
 .btn-custom:hover {
   background-color: var(--color3);
 }
+
+/*-------------------NAVBAR PRINCIPAL----------------------*/
+.navbar {
+  background-color: var(--color1); 
+}
+
+.navbar-brand {
+  font-weight: bold;
+
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.nav-link:hover {
+  color: lightgray !important;
+}
+
+.dropdown-menu {
+  background-color: #fff;
+}
+
+/*-------------------LOGIN----------------------*/
+
+.login-page {
+  min-height: 100vh; /* ocupa altura inteira */
+  background-color: #f8f9fa; /* cinza claro */
+}
+
+.login-card {
+  width: 100%;
+  max-width: 500px; /* ~40% em desktops */
+  background: #fff;
+  border-radius: 8px;
+}
+
+.project-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input {
+  flex: 1;
+  padding-right: 2.5rem; /* espaço para o ícone dentro do campo */
+}
+
+.password-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.password-toggle:hover {
+  color: #000;
+}
+
+.btn-entrar {
+  background-color: var(--color3) !important; /* cor de fundo */
+  color: #fff !important;              /* cor da fonte */
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none; /* remove borda padrão */
+}
+
+.btn-entrar:hover {
+  background-color: var(--color1) !important;
+  color: #e9ecef !important;
+}
+
+/*-------------------NAVBAR ABAS PÁGINAS----------------------*/
+.page-tabs .nav-link {
+  color: var(--color1) !important;
+  background-color: var(--color1);
+  font-weight: 500;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem 0.375rem 0 0;
+  margin-right: 4px;
+}
+
+.page-tabs .nav-link:hover {
+  background-color: #e9ecef;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.page-tabs .nav-link.active {
+  color: white  !important;
+  background-color: var(--color1);
+  border-color: var(--color1);
+  font-weight: 500;
+}
+
+.page-tabs + .tab-content {
+  border: 1px solid #dee2e6;
+  border-top: none;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0 0 0.375rem 0.375rem;
+}
+

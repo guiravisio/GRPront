@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GRProntAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa65db756b72a4269c52aec2c0a1bf7b8b6f24fd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f717e5c9114701a2d65da32733dd31664ccd2482")]
 [assembly: System.Reflection.AssemblyProductAttribute("GRProntAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GRProntAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

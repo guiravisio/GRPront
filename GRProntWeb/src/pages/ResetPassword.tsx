@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../services/api";
-import "./Login.css"; // reaproveita o mesmo CSS da tela de login
+//import "./Login.css"; // reaproveita o mesmo CSS da tela de login
 
 export default function ResetPassword() {
   const { id } = useParams();
